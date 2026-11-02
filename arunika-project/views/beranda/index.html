@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b1a15">
+    <meta name="description" content="Jelajahi kekayaan seni, tradisi, sejarah, dan budaya Jawa.">
+    <link rel="stylesheet" href="../../css/accessibility.css">
+    <link rel="stylesheet" href="../../css/accessibility-extra.css">
+    <title>Arunika — Seni & Budaya Jawa</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forest: '#0b1a15',
+                        deep: '#0d2119',
+                        card: '#142b21',
+                        gold: '#d4af67',
+                        cream: '#f0e6d2',
+                        muted: '#b9c2b7'
+                    },
+                    fontFamily: {
+                        sans: ['Segoe UI', 'Tahoma', 'sans-serif'],
+                        serif: ['Georgia', 'serif']
+                    },
+                    boxShadow: {
+                        gold: '0 10px 35px rgba(212, 175, 103, 0.12)'
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translate(-50%, -50%)' },
+                            '50%': { transform: 'translate(-50%, -65%)' }
+                        }
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 1s ease-out forwards',
+                        'fade-in': 'fadeIn 1.5s ease-out forwards',
+                        'float': 'float 4s ease-in-out infinite'
+                    }
+                }
+            }
+        }
+    </script>
+
+<style>
+    html {
+        scroll-behavior: smooth !important;
+    }
+
+    body {
+        margin: 0;
+        background: #0b1a15;
+        color: #f0e6d2;
+        overflow-x: hidden;
+    }
+
+    ::selection {
+        background: #d4af67;
+        color: #0b1a15;
+    }
+
+    .hero-overlay {
+        background: linear-gradient(
+            90deg,
+            rgba(11, 26, 21, 0.97) 0%,
+            rgba(11, 26, 21, 0.80) 45%,
+            rgba(11, 26, 21, 0.12) 100%
+        );
+    }
+
+    .gold-line {
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            #d4af67,
+            transparent
+        );
+    }
+
+    .nav-link {
+        position: relative;
+    }
+
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 1px;
+        left: 0;
+        bottom: -7px;
+        background: #d4af67;
+        transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+    .map-pattern {
+        background-image:
+            radial-gradient(
+                ellipse at 50% 50%,
+                rgba(212,175,103,.09),
+                transparent 65%
+            ),
+            linear-gradient(
+                rgba(212,175,103,.045) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                90deg,
+                rgba(212,175,103,.045) 1px,
+                transparent 1px
+            );
+
+        background-size: auto, 35px 35px, 35px 35px;
+    }
+    /* Tambahkan animasi navbarDrop di bawah class map-pattern atau di akhir tag <style> */
+    #navbar {
+        animation: navbarDrop 0.8s cubic-bezier(.2, .7, .2, 1) forwards;
+    }
+    @keyframes navbarDrop {
+        from { opacity: 0; transform: translateY(-100%); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+
+<body class="font-sans antialiased">
+
+<nav id="navbar"
+    class="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-forest/90 backdrop-blur-xl">
+
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 md:px-10">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 transition-transform duration-300 hover:scale-105">
+            <div>
+                <p class="font-serif text-xl font-bold tracking-[0.15em] text-gold">
+                    Arunika
+                </p>
+                <p class="text-[9px] uppercase tracking-[0.3em] text-cream/60">
+                    Warisan Nusantara
+                </p>
+            </div>
+        </a>
+
+        <!-- Tombol Menu Mobile -->
+        <button id="menu-button"
+            class="rounded border border-white/15 px-3 py-2 text-sm text-cream transition-colors hover:border-gold md:hidden"
+            aria-label="Buka menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu">
+            ☰
+        </button>
+
+        <!-- Menu Desktop -->
+        <div class="hidden items-center gap-8 text-sm text-cream/80 md:flex">
+            <a href="index.html" class="nav-link hover:text-gold transition-colors">
+                Beranda
+            </a>
+
+            <a href="../galeri-seni/index.html" class="nav-link hover:text-gold transition-colors">
+                Galeri Seni
+            </a>
+
+            <a href="../tradisi/index.html" class="nav-link hover:text-gold transition-colors">
+                Tradisi
+            </a>
+
+            <a href="../kuliner/index.html" class="nav-link hover:text-gold transition-colors">
+                Kuliner
+            </a>
+
+            <a href="../sejarah/index.html" class="nav-link hover:text-gold transition-colors">
+                Sejarah
+            </a>
+        </div>
+
+
+    </div>
+
+    <!-- Menu Mobile -->
+    <div id="mobile-menu"
+        class="hidden border-t border-white/10 bg-forest px-6 py-4 md:hidden">
+
+        <div class="flex flex-col gap-5 text-sm">
+            <a href="#beranda" class="mobile-link">Beranda</a>
+            <a href="#galeri-seni" class="mobile-link">Galeri Seni</a>
+            <a href="#tradisi" class="mobile-link">Tradisi</a>
+            <a href="#kuliner" class="mobile-link">Kuliner</a>
+            <a href="#sejarah" class="mobile-link">Sejarah</a>
+        </div>
+
+    </div>
+</nav>
+
+        <!-- HERO -->
+        <section id="beranda" class="relative flex min-h-screen items-center overflow-hidden">
+
+            <div class="absolute inset-0">
+                <img
+                    src="../../img/beranda/home-page-hero.jpg"
+                    alt="Arsitektur candi dengan suasana bersejarah"
+                    class="h-full w-full object-cover object-center scale-105 animate-[fadeIn_2s_ease-out]"
+                    fetchpriority="high">
+
+                <div class="hero-overlay absolute inset-0"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-forest via-transparent to-forest/30"></div>
+            </div>
+
+            <div class="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-5 pb-28 pt-40 md:px-10 lg:grid-cols-2">
+
+                <div class="hero-text">
+                    <div class="mb-7 flex items-center gap-4 opacity-0 animate-fade-up" style="animation-delay: 0.1s;">
+                        <span class="h-px w-12 bg-gold"></span>
+                        <p class="text-xs uppercase tracking-[0.3em] text-gold">
+                            Seni · Sejarah · Tradisi
+                        </p>
+                    </div>
+
+                    <h1 class="max-w-2xl font-serif text-5xl leading-[1.12] md:text-7xl lg:text-8xl opacity-0 animate-fade-up" style="animation-delay: 0.3s;">
+                        Menjaga
+                        <span class="block italic text-gold">Nyala</span>
+                        <span class="block">Tradisi.</span>
+                    </h1>
+
+                    <p class="mt-7 max-w-lg text-base leading-8 text-cream/75 md:text-lg opacity-0 animate-fade-up" style="animation-delay: 0.5s;">
+                        Menelusuri keindahan seni, kemegahan arsitektur,
+                        dan filosofi kehidupan yang tumbuh dari warisan
+                        budaya Jawa.
+                    </p>
+
+                    <div class="mt-10 flex flex-wrap items-center gap-5 opacity-0 animate-fade-up" style="animation-delay: 0.7s;">
+                        <a href="#tentang"
+                            class="group inline-flex items-center gap-4 bg-gold px-7 py-4 text-xs font-bold uppercase tracking-widest text-forest transition-all duration-300 hover:bg-cream hover:shadow-gold hover:scale-105">
+                            Jelajahi Warisan
+                            <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                        </a>
+
+                        <a href="#galeri"
+                            class="border border-white/25 px-7 py-4 text-xs uppercase tracking-widest text-cream transition-all duration-300 hover:border-gold hover:text-gold hover:scale-105">
+                            Lihat Galeri
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="hero-image relative hidden lg:block opacity-0 animate-fade-in" style="animation-delay: 0.9s;">
+                    <div class="absolute -right-2 -top-8 h-64 w-64 rounded-full border border-gold/30 animate-pulse"></div>
+
+                    <div class="relative ml-auto max-w-md border border-gold/40 bg-forest/30 p-3 backdrop-blur-sm transition-transform duration-700 hover:scale-[1.02]">
+                        <img
+                            src="../../img/beranda/stupa-hero-content.jpg"
+                            alt="Pemandangan bangunan bersejarah di Indonesia"
+                            class="h-[440px] w-full object-cover">
+
+                        <div class="absolute -bottom-6 -left-8 max-w-xs border border-gold/30 bg-forest/95 p-5 transition-transform duration-500 hover:-translate-y-2 hover:shadow-gold">
+                            <p class="text-[10px] uppercase tracking-[0.3em] text-gold">
+                                Jejak Peradaban
+                            </p>
+                            <p class="mt-2 font-serif text-xl">
+                                Keindahan yang tak lekang waktu.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTRO / INFO CARDS -->
+        <section id="tentang" class="relative z-10 -mt-10">
+
+            <div class="mx-auto grid max-w-7xl gap-5 md:grid-cols-3">
+
+                <article class="info-card group border border-white/5 bg-card p-5 transition-all duration-500 hover:-translate-y-2 hover:border-gold/40 hover:shadow-gold opacity-0 scroll-animate" style="animation-delay: 0.1s;">
+                    <div class="overflow-hidden">
+                        <img
+                            src="../../img/beranda/candi-singosari.jpg"
+                            alt="Pemandangan alam dan warisan budaya"
+                            loading="lazy"
+                            class="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+
+                    <p class="mt-6 text-[10px] uppercase tracking-[0.25em] text-gold transition-colors group-hover:text-cream">01 — Arsitektur</p>
+
+                    <h2 class="mt-3 font-serif text-2xl transition-colors group-hover:text-gold">
+                        Mahakarya Batu
+                    </h2>
+
+                    <p class="mt-3 text-sm leading-7 text-muted">
+                        Mengenal keagungan candi dan detail arsitektur
+                        yang merekam kecerdasan peradaban masa lampau.
+                    </p>
+                </article>
+
+                <article class="info-card group border border-white/5 bg-card p-5 transition-all duration-500 hover:-translate-y-2 hover:border-gold/40 hover:shadow-gold opacity-0 scroll-animate" style="animation-delay: 0.3s;">
+                    <div class="overflow-hidden">
+                        <img
+                            src="../../img/beranda/batik.jpg"
+                            alt="Karya seni dan proses kreatif"
+                            loading="lazy"
+                            class="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+
+                    <p class="mt-6 text-[10px] uppercase tracking-[0.25em] text-gold transition-colors group-hover:text-cream">02 — Seni Rupa</p>
+
+                    <h2 class="mt-3 font-serif text-2xl transition-colors group-hover:text-gold">
+                        Jejak Kreativitas
+                    </h2>
+
+                    <p class="mt-3 text-sm leading-7 text-muted">
+                        Dari batik hingga ukiran, setiap karya menyimpan
+                        simbol, ketelitian, dan cerita kehidupan.
+                    </p>
+                </article>
+
+                <article class="info-card group border border-white/5 bg-card p-5 transition-all duration-500 hover:-translate-y-2 hover:border-gold/40 hover:shadow-gold opacity-0 scroll-animate" style="animation-delay: 0.5s;">
+                    <div class="overflow-hidden">
+                        <img
+                            src="../../img/beranda/harmoni-kehidupan.jpg"
+                            alt="Bentang alam yang menjadi bagian kehidupan masyarakat"
+                            loading="lazy"
+                            class="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+
+                    <p class="mt-6 text-[10px] uppercase tracking-[0.25em] text-gold transition-colors group-hover:text-cream">03 — Filosofi</p>
+
+                    <h2 class="mt-3 font-serif text-2xl transition-colors group-hover:text-gold">
+                        Harmoni Kehidupan
+                    </h2>
+
+                    <p class="mt-3 text-sm leading-7 text-muted">
+                        Memahami nilai kebersamaan, keselarasan alam,
+                        dan kearifan yang diwariskan antargenerasi.
+                    </p>
+                </article>
+
+            </div>
+        
+<!-- PETA INDONESIA -->
+<section id="peta" class="bg-deep px-5 py-24 md:px-10 md:py-32">
+
+    <div class="mx-auto max-w-7xl">
+
+        <div class="text-center group opacity-0 scroll-animate">
+            <p class="text-xs uppercase tracking-[0.35em] text-gold transition-colors group-hover:text-cream">
+                Mengenal Nusantara
+            </p>
+
+            <h2 class="mt-5 font-serif text-4xl md:text-6xl transition-transform duration-500 group-hover:scale-[1.02]">
+                Sebuah Negeri,
+                <span class="italic text-gold">Ribuan Cerita.</span>
+            </h2>
+
+            <p class="mx-auto mt-6 max-w-2xl text-sm leading-8 text-muted md:text-base">
+                Indonesia menyimpan beragam bahasa, seni, adat,
+                dan tradisi. Temukan posisi budaya Jawa dalam
+                kekayaan warisan Nusantara.
+            </p>
+        </div>
+
+        <div class="relative mt-14 overflow-hidden border border-gold/20 px-5 py-12 transition-all duration-500 hover:border-gold/50 md:px-12 md:py-16 opacity-0 scroll-animate" style="animation-delay: 0.2s;">
+
+            <!-- Label peta -->
+            <div class="absolute left-5 top-5 z-10 text-[10px] uppercase tracking-[0.25em] text-gold/70">
+                Peta Indonesia
+            </div>
+
+            <div class="grid items-center gap-12 lg:grid-cols-2">
+
+                <!-- GAMBAR PETA INDONESIA -->
+                <div class="relative flex items-center justify-center pt-5">
+
+                    <img
+                        src="../../img/beranda/Peta_Indonesia.png"
+                        alt="Peta Indonesia dan kepulauannya"
+                        class="w-full max-w-xl object"
+                    >
+
+                <!-- Penanda Pulau Jawa -->
+                 <div class="absolute left-[35%] top-[72%] z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
+
+                    <!-- Gambar Stupa -->
+                    <img
+                        src="../../img/beranda/stupa.png"
+                        alt="Stupa di Pulau Jawa"
+                        class="w-12 h-12 object-contain drop-shadow-lg md:h-16 md:w-16"
+                    >
+
+                    <!-- Label Pulau Jawa -->
+                    <span class="mt-1 whitespace-nowrap border border-gold/50 bg-deep/95 px-3 py-1 text-[10px] uppercase tracking-wider text-gold md:text-xs">
+                        Pulau Jawa
+                    </span>
+
+                </div>
+
+                    <p class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full pt-4 text-center text-[10px] uppercase tracking-widest text-cream/40">
+                        Kepulauan Indonesia
+                    </p>
+
+                </div>
+
+                <!-- INFORMASI BUDAYA JAWA -->
+                <div class="mt-5 lg:mt-0">
+
+                    <p class="text-xs uppercase tracking-[0.3em] text-gold">
+                        Sorotan Budaya
+                    </p>
+
+                    <h3 class="mt-5 font-serif text-3xl leading-snug md:text-4xl">
+                        Jawa, tempat tradisi
+                        <span class="italic text-gold">terus bertumbuh.</span>
+                    </h3>
+
+                    <p class="mt-5 text-sm leading-8 text-muted">
+                        Pulau Jawa menjadi rumah bagi beragam
+                        tradisi, mulai dari wayang kulit dan
+                        gamelan hingga batik, keris, serta
+                        berbagai upacara adat.
+                    </p>
+
+                    <div class="mt-8 grid grid-cols-2 gap-4">
+
+                        <div class="border-l border-gold/50 pl-4 transition-all duration-300 hover:border-gold hover:pl-6">
+                            <p class="font-serif text-2xl text-gold">Seni</p>
+                            <p class="mt-1 text-xs text-muted">
+                                Karya dan pertunjukan
+                            </p>
+                        </div>
+
+                        <div class="border-l border-gold/50 pl-4 transition-all duration-300 hover:border-gold hover:pl-6">
+                            <p class="font-serif text-2xl text-gold">Tradisi</p>
+                            <p class="mt-1 text-xs text-muted">
+                                Nilai lintas generasi
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="#galeri"
+                        class="group mt-9 inline-flex items-center gap-4 border border-gold/50 px-6 py-4 text-xs uppercase tracking-widest text-gold transition-all duration-300 hover:bg-gold hover:text-forest hover:shadow-gold"
+                    >
+                        Jelajahi Galeri <span class="transition-transform duration-300 group-hover:translate-x-2">→</span>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- GALERI -->
+        <section id="galeri" class="px-5 py-24 md:px-10 md:py-32">
+
+            <div class="mx-auto max-w-7xl">
+
+                <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end opacity-0 scroll-animate">
+                    <div>
+                        <p class="text-xs uppercase tracking-[0.35em] text-gold">
+                            Rupa dan Irama Jawa
+                        </p>
+
+                        <h2 class="mt-5 font-serif text-4xl md:text-6xl">
+                            Kisah dalam
+                            <span class="italic text-gold">Setiap Karya.</span>
+                        </h2>
+                    </div>
+
+                    <p class="max-w-md text-sm leading-8 text-muted">
+                        Menikmati keindahan visual dan ekspresi artistik
+                        yang menjadi bagian dari identitas budaya Jawa.
+                    </p>
+                </div>
+
+                <div class="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+                    <article class="gallery-card group relative h-80 overflow-hidden sm:h-96 opacity-0 scroll-animate" style="animation-delay: 0.1s;">
+                        <img
+                            src="../../img/beranda/jejak-artistik.jpg"
+                            alt="Karya seni lukis"
+                            loading="lazy"
+                            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-forest via-forest/10 to-transparent transition-opacity duration-300 group-hover:opacity-80"></div>
+
+                        <div class="absolute bottom-0 p-6 transition-transform duration-300 group-hover:-translate-y-2">
+                            <p class="text-[10px] uppercase tracking-[0.25em] text-gold">01 / Seni Rupa</p>
+                            <h3 class="mt-2 font-serif text-2xl">Jejak Artistik</h3>
+                            <p class="mt-2 text-xs text-cream/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100">Warna, bentuk, dan makna.</p>
+                        </div>
+                    </article>
+
+                    <article class="gallery-card group relative mt-0 h-80 overflow-hidden sm:mt-10 sm:h-96 opacity-0 scroll-animate" style="animation-delay: 0.2s;">
+                        <img
+                            src="../../img/beranda/ruang-ekspresi.jpg"
+                            alt="Inspirasi karya seni"
+                            loading="lazy"
+                            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-forest via-forest/10 to-transparent transition-opacity duration-300 group-hover:opacity-80"></div>
+
+                        <div class="absolute bottom-0 p-6 transition-transform duration-300 group-hover:-translate-y-2">
+                            <p class="text-[10px] uppercase tracking-[0.25em] text-gold">02 / Kreativitas</p>
+                            <h3 class="mt-2 font-serif text-2xl">Ruang Ekspresi</h3>
+                            <p class="mt-2 text-xs text-cream/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100">Inspirasi dalam setiap karya.</p>
+                        </div>
+                    </article>
+
+                    <article class="gallery-card group relative h-80 overflow-hidden sm:h-96 opacity-0 scroll-animate" style="animation-delay: 0.3s;">
+                        <img
+                            src="../../img/beranda/penataran.jpg"
+                            alt="Arsitektur bangunan bersejarah"
+                            loading="lazy"
+                            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-forest via-forest/10 to-transparent transition-opacity duration-300 group-hover:opacity-80"></div>
+
+                        <div class="absolute bottom-0 p-6 transition-transform duration-300 group-hover:-translate-y-2">
+                            <p class="text-[10px] uppercase tracking-[0.25em] text-gold">03 / Arsitektur</p>
+                            <h3 class="mt-2 font-serif text-2xl">Warisan Batu</h3>
+                            <p class="mt-2 text-xs text-cream/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100">Kemegahan masa lampau.</p>
+                        </div>
+                    </article>
+
+                    <article class="gallery-card group relative mt-0 h-80 overflow-hidden sm:mt-10 sm:h-96 opacity-0 scroll-animate" style="animation-delay: 0.4s;">
+                        <img
+                            src="../../img/beranda/harmoni-alam.jpg"
+                            alt="Keindahan lanskap alam"
+                            loading="lazy"
+                            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-forest via-forest/10 to-transparent transition-opacity duration-300 group-hover:opacity-80"></div>
+
+                        <div class="absolute bottom-0 p-6 transition-transform duration-300 group-hover:-translate-y-2">
+                            <p class="text-[10px] uppercase tracking-[0.25em] text-gold">04 / Kehidupan</p>
+                            <h3 class="mt-2 font-serif text-2xl">Harmoni Alam</h3>
+                            <p class="mt-2 text-xs text-cream/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100">Manusia dan lingkungannya.</p>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="mt-12 text-center opacity-0 scroll-animate" style="animation-delay: 0.2s;">
+                    <a href="#budaya"
+                        class="group inline-flex items-center gap-4 border border-gold/50 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-gold transition-all duration-300 hover:bg-gold hover:text-forest hover:shadow-gold hover:scale-105">
+                        Temukan Kisah Lainnya <span class="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- BUDAYA DAN ADAT -->
+        <section id="budaya" class="overflow-hidden bg-deep py-24">
+
+            <div class="mx-auto grid max-w-7xl lg:grid-cols-2">
+
+                <div data-tts class="culture-text px-5 py-20 md:px-10 md:py-28 lg:pl-12 lg:pr-16 opacity-0 scroll-animate">
+
+                    <p class="text-xs uppercase tracking-[0.35em] text-gold">
+                        Seni, Adat, dan Religi
+                    </p>
+
+                    <h2 class="mt-6 font-serif text-4xl leading-tight md:text-6xl">
+                        Budaya dan
+                        <span class="block italic text-gold">Adat Jawa.</span>
+                    </h2>
+
+                    <div class="gold-line my-8 max-w-24 animate-pulse"></div>
+
+                    <h3 class="font-serif text-2xl">
+                        Kearifan dalam Setiap Tradisi
+                    </h3>
+
+                    <p class="mt-5 text-sm leading-8 text-muted">
+                        Budaya Jawa tumbuh melalui perpaduan kesenian,
+                        nilai sosial, kepercayaan, dan kebiasaan
+                        masyarakat. Setiap tradisi memiliki latar
+                        belakang serta makna yang berbeda, mencerminkan
+                        cara masyarakat memahami kehidupan dan
+                        hubungannya dengan lingkungan.
+                    </p>
+
+                    <p class="mt-4 text-sm leading-8 text-muted">
+                        Wayang kulit menyampaikan kisah dan nilai
+                        kehidupan, gamelan menghadirkan harmoni bunyi,
+                        sementara batik menyimpan keragaman motif
+                        yang berkembang di berbagai daerah.
+                    </p>
+
+                    <div class="mt-9 grid grid-cols-2 gap-5">
+                        <div class="border-l border-gold/50 pl-4 transition-all duration-300 hover:border-gold hover:pl-6">
+                            <p class="font-serif text-xl text-gold">Wayang</p>
+                            <p class="mt-2 text-xs leading-6 text-muted">
+                                Seni pertunjukan penuh simbol.
+                            </p>
+                        </div>
+
+                        <div class="border-l border-gold/50 pl-4 transition-all duration-300 hover:border-gold hover:pl-6">
+                            <p class="font-serif text-xl text-gold">Gamelan</p>
+                            <p class="mt-2 text-xs leading-6 text-muted">
+                                Harmoni musik tradisional.
+                            </p>
+                        </div>
+
+                        <div class="border-l border-gold/50 pl-4 transition-all duration-300 hover:border-gold hover:pl-6">
+                            <p class="font-serif text-xl text-gold">Batik</p>
+                            <p class="mt-2 text-xs leading-6 text-muted">
+                                Motif dengan karakter khas.
+                            </p>
+                        </div>
+
+                        <div class="border-l border-gold/50 pl-4 transition-all duration-300 hover:border-gold hover:pl-6">
+                            <p class="font-serif text-xl text-gold">Adat</p>
+                            <p class="mt-2 text-xs leading-6 text-muted">
+                                Tradisi yang hidup di masyarakat.
+                            </p>
+                        </div>
+                    </div>
+
+                    <a href="#penutup"
+                        class="group mt-10 inline-flex items-center gap-4 bg-gold px-7 py-4 text-xs font-bold uppercase tracking-widest text-forest transition-all duration-300 hover:bg-cream hover:shadow-gold hover:scale-105">
+                        Kenali Warisan Kita <span class="transition-transform duration-300 group-hover:translate-x-2">→</span>
+                    </a>
+                </div>
+
+                <div class="culture-image relative min-h-[450px] lg:min-h-full overflow-hidden opacity-0 scroll-animate" style="animation-delay: 0.3s;">
+                    <img
+                        src="../../img/beranda/stupa-last.jpg"
+                        alt="Arsitektur bersejarah yang menginspirasi pelestarian budaya"
+                        loading="lazy"
+                        class="absolute inset-0 h-full w-full object-cover transition-transform duration-[10s] hover:scale-110">
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-forest/80 via-transparent to-forest/10"></div>
+
+                    <div class="absolute bottom-8 left-8 right-8 border border-white/20 bg-forest/65 p-6 backdrop-blur-md transition-transform duration-500 hover:-translate-y-2 hover:border-gold/50 md:bottom-12 md:left-12 md:right-12">
+                        <p class="text-[10px] uppercase tracking-[0.3em] text-gold">
+                            Warisan Lintas Generasi
+                        </p>
+
+                        <p class="mt-3 font-serif text-2xl leading-snug md:text-3xl">
+                            Mengenal masa lalu,
+                            merawat identitas,
+                            menatap masa depan.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-[#080f0c] px-5 py-14 md:px-10 md:py-20">
+
+        <div class="mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
+
+            <div class="lg:col-span-2">
+                <a href="index.html" class="inline-flex items-center gap-3">
+
+
+                    <span class="font-serif text-2xl tracking-[0.15em] text-gold">
+                        Arunika
+                    </span>
+                </a>
+
+                <p class="mt-5 max-w-sm text-sm leading-7 text-muted">
+                    Ruang digital untuk mengenal seni, sejarah,
+                    tradisi, dan kekayaan budaya Jawa.
+                </p>
+
+                <p class="mt-6 text-xs uppercase tracking-widest text-cream/40">
+                    Merawat warisan, meneruskan cerita.
+                </p>
+            </div>
+
+            <div>
+                <h3 class="text-xs font-bold uppercase tracking-[0.25em] text-gold">
+                    Navigasi
+                </h3>
+
+
+               <ul class="mt-6 grid w-fit grid-flow-col grid-rows-3 gap-x-4 gap-y-3 text-sm text-muted">
+
+                    <li>
+                        <a href="index.html" class="transition hover:text-gold">
+                            Beranda
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="../galeri-seni/index.html" class="transition hover:text-gold">
+                            Galeri Seni
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="../tradisi/index.html" class="transition hover:text-gold">
+                            Tradisi
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="../kuliner/index.html" class="transition hover:text-gold">
+                            Kuliner
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="../sejarah/index.html" class="transition hover:text-gold">
+                            Sejarah
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div>
+                <h3 class="text-xs font-bold uppercase tracking-[0.25em] text-gold">
+                    Tentang Situs
+                </h3>
+
+                <p class="mt-5 text-sm leading-7 text-muted">
+                    Dibuat sebagai ruang belajar dan eksplorasi
+                    kekayaan seni serta budaya Jawa.
+                </p>
+            </div>
+        </div>
+
+        <div class="mx-auto mt-12 max-w-7xl border-t border-white/10 pt-6">
+            <div class="flex flex-col justify-between gap-3 text-xs text-cream/40 sm:flex-row">
+                <p>© <span id="year"></span> Arunika — Seni & Budaya Jawa.</p>
+                <p>Dibuat dengan rasa cinta terhadap budaya Nusantara.</p>
+            </div>
+        </div>
+    </footer>
+
+
+<!-- FLOATING ACCESSIBILITY WIDGET -->
+<div class="accessibility-widget">
+
+    <div
+        class="accessibility-panel"
+        id="accessibilityPanel"
+        aria-hidden="true"
+    >
+        <div class="accessibility-header">
+            <h2>Aksesibilitas</h2>
+        </div>
+
+        <p class="accessibility-description">
+            Sesuaikan tampilan agar lebih nyaman digunakan.
+        </p>
+
+        <!-- PENGATURAN TAMPILAN -->
+        <div class="accessibility-group">
+            <p class="access-extra-heading">Pengaturan tampilan</p>
+
+            <button type="button" class="accessibility-option"
+                id="toggleGrayscale" aria-pressed="false">
+                <span>
+                    Grayscale
+                    <small>Tampilan hitam putih</small>
+                </span>
+                <span class="accessibility-status">MATI</span>
+            </button>
+
+            <button type="button" class="accessibility-option"
+                id="toggleContrast" aria-pressed="false">
+                <span>
+                    Kontras tinggi
+                    <small>Mempertegas perbedaan warna</small>
+                </span>
+                <span class="accessibility-status">MATI</span>
+            </button>
+
+            <button type="button" class="accessibility-option"
+                id="toggleInvert" aria-pressed="false">
+                <span>
+                    Warna terbalik
+                    <small>Membalik skema warna halaman</small>
+                </span>
+                <span class="accessibility-status">MATI</span>
+            </button>
+
+            <button type="button" class="accessibility-reset"
+                id="accessibilityReset">
+                Reset tampilan
+            </button>
+        </div>
+
+        <!-- PEMBACA TEKS -->
+        <div class="access-extra-section">
+            <p class="access-extra-heading">Pembaca teks</p>
+
+            <p class="access-extra-description">
+                Dengarkan artikel Budaya dan Adat Jawa.
+            </p>
+
+            <div class="access-extra-controls">
+                <button type="button" class="access-extra-button"
+                    id="ttsPlay">
+                    ▶ Putar
+                </button>
+
+                <button type="button" class="access-extra-button"
+                    id="ttsPause">
+                    Ⅱ Jeda
+                </button>
+
+                <button type="button" class="access-extra-button"
+                    id="ttsResume">
+                    ↻ Lanjut
+                </button>
+
+                <button type="button" class="access-extra-button"
+                    id="ttsStop">
+                    ■ Berhenti
+                </button>
+            </div>
+
+            <p id="ttsStatus" class="access-extra-status"
+                role="status" aria-live="polite">
+                Siap membacakan artikel.
+            </p>
+        </div>
+
+        <!-- VISUALISASI RITME -->
+        <div class="access-extra-section">
+            <p class="access-extra-heading">Visualisasi ritme</p>
+
+            <p class="access-extra-description">
+                Lihat pola gerakan visual dengan tempo yang dapat diatur.
+            </p>
+
+            <div
+                id="ritmeVisualizer"
+                class="ritme-visualizer"
+                role="img"
+                aria-label="Visualisasi ritme dalam keadaan berhenti"
+            >
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+            </div>
+
+            <label for="ritmeTempo" class="access-extra-label">
+                Tempo visual
+            </label>
+
+            <div class="access-extra-tempo">
+                <input
+                    type="range"
+                    id="ritmeTempo"
+                    min="40"
+                    max="160"
+                    step="5"
+                    value="90"
+                >
+
+                <output id="ritmeTempoValue" for="ritmeTempo">
+                    90 BPM
+                </output>
+            </div>
+
+            <div class="access-extra-controls">
+                <button type="button" class="access-extra-button"
+                    id="ritmePlay">
+                    ▶ Mulai
+                </button>
+
+                <button type="button" class="access-extra-button"
+                    id="ritmeStop">
+                    ■ Berhenti
+                </button>
+            </div>
+
+            <p id="ritmeStatus" class="access-extra-status"
+                role="status" aria-live="polite">
+                Animasi ritme belum dimulai.
+            </p>
+        </div>
+    </div>
+
+    <button
+        type="button"
+        class="accessibility-toggle"
+        id="accessibilityToggle"
+        aria-label="Buka menu aksesibilitas"
+        aria-expanded="false"
+        aria-controls="accessibilityPanel"
+    >
+        <span class="toggle-icon">⚙️</span>
+    </button>
+
+</div>
+<!-- END FLOATING ACCESSIBILITY WIDGET -->
+
+<script src="../../js/accessibility-extra.js" defer></script>
+<script src="../../js/accessibility.js" defer></script>
+</body>
+</html>
+
+    <!-- JAVASCRIPT -->
+<script>
+    // Tahun otomatis di footer
+    document.getElementById('year').textContent =
+        new Date().getFullYear();
+
+    // Menu mobile
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuButton.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.toggle('hidden');
+
+        menuButton.setAttribute('aria-expanded', String(!isHidden));
+        menuButton.textContent = isHidden ? '☰' : '✕';
+    });
+
+    // Tutup menu setelah link dipilih
+    document.querySelectorAll('.mobile-link').forEach(link => {
+        link.classList.add(
+            'block',
+            'text-cream/80',
+            'hover:text-gold',
+            'transition-colors'
+        );
+
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            menuButton.setAttribute('aria-expanded', 'false');
+            menuButton.textContent = '☰';
+        });
+    });
+
+    // Animasi Scroll (Intersection Observer)
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -50px 0px', // Animasi mulai sedikit sebelum elemen mencapai bagian paling bawah layar
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Tambahkan class animasi ketika elemen terlihat
+                entry.target.classList.add('animate-fade-up');
+                // Hapus observer agar animasi hanya berjalan sekali
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Menerapkan observer ke semua elemen dengan class scroll-animate
+    document.querySelectorAll('.scroll-animate').forEach(el => {
+        observer.observe(el);
+    });
+</script>
+</body>
+</html>

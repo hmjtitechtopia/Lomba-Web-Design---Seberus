@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b1a15">
+    <meta name="description" content="Jelajahi kekayaan seni, tradisi, sejarah, dan budaya Jawa.">
+    <link rel="stylesheet" href="../../css/accessibility.css">
+    <link rel="stylesheet" href="../../css/accessibility-extra.css">
+    <title>Kuliner — Arunika</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forest: '#0b1a15',
+                        deep: '#0d2119',
+                        card: '#142b21',
+                        gold: '#d4af67',
+                        cream: '#f0e6d2',
+                        muted: '#b9c2b7'
+                    },
+                    fontFamily: {
+                        sans: ['Segoe UI', 'Tahoma', 'sans-serif'],
+                        serif: ['Georgia', 'serif']
+                    },
+                    boxShadow: {
+                        gold: '0 10px 35px rgba(212, 175, 103, 0.12)'
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        fadeRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translate(-50%, -50%)' },
+                            '50%': { transform: 'translate(-50%, -65%)' }
+                        }
+                    },
+                    animation: {
+                        // Menggunakan custom bezier agar animasi terasa lebih premium dan smooth
+                        'fade-up': 'fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-left': 'fadeLeft 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-right': 'fadeRight 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-in': 'fadeIn 1.5s ease-out forwards',
+                        'float': 'float 4s ease-in-out infinite'
+                    }
+                }
+            }
+        }
+    </script>
+
+<style>
+    html {
+        scroll-behavior: smooth !important;
+    }
+
+    body {
+        margin: 0;
+        background: #0b1a15;
+        color: #f0e6d2;
+        overflow-x: hidden;
+    }
+
+    ::selection {
+        background: #d4af67;
+        color: #0b1a15;
+    }
+
+    .hero {
+      background-image:
+        linear-gradient(
+          90deg,
+          rgba(11, 26, 21, 0.98) 0%,
+          rgba(11, 26, 21, 0.88) 35%,
+          rgba(11, 26, 21, 0.48) 61%,
+          rgba(11, 26, 21, 0.06) 100%
+        ),
+    }
+
+    /* NAVBAR: gold underline on hover */
+    .nav-link { 
+        position: relative; 
+    }
+    .nav-link::after {
+      content: ''; position: absolute; left: 0; bottom: -7px;
+      width: 0; height: 1px; background: #d4af67; transition: width .25s ease;
+    }
+
+    .nav-link:hover::after { 
+        width: 100%; 
+    }
+
+    /* FOOD CARDS: alternate image placement from left to right */
+    .food-card {
+        position: relative;
+        width: min(82%, 680px);
+        min-height: 180px;
+        border: 1px solid rgba(212,175,103,.32);
+        border-radius: 7px;
+        background: rgba(20,43,33,.72);
+        display: flex;
+        align-items: center;
+        padding: 28px 28px 28px 125px;
+        margin-left: auto;
+    }
+
+    .food-card:nth-child(even) {
+        margin-left: 0;
+        margin-right: auto;
+        padding: 28px 125px 28px 28px;
+    }
+
+    .food-image {
+        position: absolute;
+        left: -220px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 320px;
+        height: 220px;
+        background: #eee;
+        color: #555;
+        display: grid;
+        place-items: center;
+        border: 1px solid #c9c9c9;
+    }
+
+    .food-card:nth-child(even) .food-image {
+        left: auto;
+        right: -220px;
+    }
+
+    .placeholder-icon { 
+        width: 42px; height: 32px; 
+    }
+
+    .gold-line { 
+        height: 1px; background: linear-gradient(90deg,transparent,#d4af67,transparent); 
+    }
+    
+    /* RESPONSIVE: stack image and text on narrow screens */
+    @media (max-width: 640px) {
+      .hero { min-height: 310px; background-position: center; }
+      .food-card, .food-card:nth-child(even) {
+        width: calc(100% - 34px); min-height: 190px; margin: 0 auto 24px;
+        padding: 112px 18px 22px; align-items: flex-start;
+      }
+      .food-image, .food-card:nth-child(even) .food-image {
+        left: 16px; right: auto; top: -18px; transform: none;
+        width: 115px; height: 100px;
+      }
+      .food-card p { font-size: 11px; line-height: 1.55; }
+    }
+
+    /* Animasi navbarDrop */
+    #navbar {
+        animation: navbarDrop 0.8s cubic-bezier(.2, .7, .2, 1) forwards;
+    }
+    @keyframes navbarDrop {
+        from { opacity: 0; transform: translateY(-100%); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased">
+
+<nav id="navbar"
+    class="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-forest/90 backdrop-blur-xl">
+
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 md:px-10">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 transition-transform duration-300 hover:scale-105">
+            <div>
+                <p class="font-serif text-xl font-bold tracking-[0.15em] text-gold">
+                    Arunika
+                </p>
+                <p class="text-[9px] uppercase tracking-[0.3em] text-cream/60">
+                    Warisan Nusantara
+                </p>
+            </div>
+        </a>
+
+        <!-- Tombol Menu Mobile -->
+        <button id="menu-button"
+            class="rounded border border-white/15 px-3 py-2 text-sm text-cream transition-colors hover:border-gold md:hidden"
+            aria-label="Buka menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu">
+            ☰
+        </button>
+
+        <!-- Menu Desktop -->
+        <div class="hidden items-center gap-8 text-sm text-cream/80 md:flex">
+            <a href="../beranda/index.html" class="nav-link hover:text-gold transition-colors">Beranda</a>
+            <a href="../galeri-seni/index.html" class="nav-link hover:text-gold transition-colors">Galeri Seni</a>
+            <a href="../tradisi/index.html" class="nav-link hover:text-gold transition-colors">Tradisi</a>
+            <a href="index.html" class="nav-link hover:text-gold transition-colors">Kuliner</a>
+            <a href="../sejarah/index.html" class="nav-link hover:text-gold transition-colors">Sejarah</a>
+        </div>
+    </div>
+
+    <!-- Menu Mobile -->
+    <div id="mobile-menu"
+        class="hidden border-t border-white/10 bg-forest px-6 py-4 md:hidden">
+        <div class="flex flex-col gap-5 text-sm">
+            <a href="#beranda" class="mobile-link">Beranda</a>
+            <a href="#galeri-seni" class="mobile-link">Galeri Seni</a>
+            <a href="#tradisi" class="mobile-link">Tradisi</a>
+            <a href="#kuliner" class="mobile-link">Kuliner</a>
+            <a href="#sejarah" class="mobile-link">Sejarah</a>
+        </div>
+    </div>
+</nav>
+
+  <main>
+    <!-- === HERO SECTION === -->
+    <section id="beranda" class="relative flex min-h-[1000px] items-center overflow-hidden">
+        <!-- Hero Image -->
+        <img
+            src="https://images.unsplash.com/photo-1655740005902-2436216b82b8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+            alt="Hidangan tradisional Indonesia"
+            class="absolute inset-0 h-full w-full object-cover  animate-[fadeIn_2s_ease-out]"
+        >
+
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-forest via-forest/80 to-forest/10"></div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 mx-auto w-full max-w-6xl px-8 py-20 md:px-14 md:py-28">
+            <div class="max-w-xl">
+                <p class="text-xs uppercase tracking-[0.3em] text-gold animate-fade-up" style="animation-delay: 0.1s;">
+                    Cita rasa warisan Nusantara
+                </p>
+
+                <h1 class="font-serif text-5xl leading-[1.12] text-gold md:text-7xl animate-fade-up" style="animation-delay: 0.1s;">
+                    Rasa yang<br>
+                    <span class="italic">Punya cerita</span>
+                </h1>
+
+                <p class="mt-7 max-w-lg text-base leading-8 text-cream/75 md:text-lg animate-fade-up" style="animation-delay: 0.1s;">
+                    Setiap hidangan punya kisah, budaya, dan cita rasa yang layak dikenang.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- === KONTEN UTAMA: CERITA KULINER === -->
+    <section id="kuliner" class="bg-deep px-5 pb-24 pt-16 md:px-10 md:pb-32 md:pt-20">
+      <div class="mx-auto max-w-5xl">
+        <!-- Tambahkan opacity-0 dan scroll-animate-up disini -->
+        <div class="mb-14 text-center md:mb-20 opacity-0 scroll-animate-up">
+          <p class="text-xs uppercase tracking-[0.3em] text-gold">Mengenal kekayaan Jawa</p>
+          <h2 class="mt-5 font-serif text-4xl md:text-6xl transition-transform duration-500 group-hover:scale-[1.02]">
+            Dari Dapur,<br>Menjadi Warisan
+          </h2>
+        </div>
+
+        <div class="flex flex-col gap-16 md:gap-24">
+          
+          <!-- Card 1: Muncul dari kiri -->
+          <article class="food-card opacity-0 scroll-animate-left">
+            <div class="food-image" aria-label="Tempat foto Rawon">
+                <img
+                    src="../../img/kuliner/rawon.jpg"
+                    alt="Rawon khas Jawa Timur"
+                    class="h-full w-full object-cover"
+                >
+            </div>
+            <div class="space-y-4">
+                <p class="max-w-lg text-base leading-8 text-cream/75 md:text-lg">
+                    1. <strong class="text-gold">Rawon — Jawa Timur</strong><br>
+                    Rawon adalah hidangan berkuah hitam yang khas.
+                </p>
+                <ul class="list-disc pl-5 text-base leading-8 text-cream/75 md:text-lg">
+                    <li>Warna kuah hitam yang unik.</li>
+                    <li>Perpaduan bumbu rempah yang kuat.</li>
+                    <li>Cocok menjadi lauk utama sehari-hari.</li>
+                </ul>
+                <p class="text-base leading-8 text-cream/75 md:text-lg">
+                    Sebagai bagian dari kuliner Jawa Timur, rawon menjadi bukti bahwa
+                    cita rasa tradisional dapat bertahan dan terus dinikmati lintas generasi.
+                </p>
+            </div>
+          </article>
+
+          <!-- Card 2: Muncul dari kanan -->
+          <article class="food-card opacity-0 scroll-animate-right">
+            <div class="food-image" aria-label="Tempat foto Gudeg">
+                <img
+                    src="../../img/kuliner/gudeg.jpg"
+                    alt="Rawon khas Jawa Timur"
+                    class="h-full w-full object-cover"
+                >
+            </div>
+            <div class="space-y-4">
+                <p class="max-w-lg text-base leading-8 text-cream/75 md:text-lg">
+                    <strong class="text-gold">2. Gudeg — Yogyakarta</strong><br>
+                    Gudeg terbuat dari nangka muda yang dimasak lama bersama santan dan berbagai rempah. Rasanya manis, lembut, dan menjadi salah satu kuliner khas Yogyakarta.
+                </p>
+                <ul class="list-disc pl-5 text-base leading-8 text-cream/75 md:text-lg">
+                <li>Memiliki rasa manis dan gurih yang khas.</li>
+                <li>Diolah bersama berbagai bumbu tradisional.</li>
+                <li>Sering disajikan dengan nasi, ayam, telur, dan sambal krecek.</li>
+                </ul>
+                <p class="text-base leading-8 text-cream/75 md:text-lg">
+                    Gudeg dikenal sebagai sajian yang dekat dengan kehidupan masyarakat Yogyakarta dan menjadi bagian penting dari identitas kulinernya.
+                </p>
+            </div>
+          </article>
+
+          <!-- Card 3: Muncul dari kiri -->
+          <article class="food-card opacity-0 scroll-animate-left">
+            <div class="food-image" aria-label="Tempat foto Soto Kudus">
+                <img
+                    src="../../img/kuliner/soto-kudus.jpg"
+                    alt="Rawon khas Jawa Timur"
+                    class="h-full w-full object-cover"
+                >
+            </div>
+            <div class="space-y-4">
+                <p class="max-w-lg text-base leading-8 text-cream/75 md:text-lg">
+                    <strong class="text-gold">3. Soto Kudus — Jawa Tengah</strong><br>
+                    Soto Kudus merupakan hidangan berkuah dengan rasa gurih yang biasanya menggunakan daging ayam atau kerbau, disajikan bersama nasi, tauge, dan bawang goreng.              
+                </p>
+                <ul class="list-disc pl-5 text-base leading-8 text-cream/75 md:text-lg">
+                <li>Kuahnya ringan dengan aroma rempah.</li>
+                <li>Disajikan dalam mangkuk kecil.</li>
+                <li>Menjadi salah satu kuliner khas Kudus yang populer.</li>
+                </ul>
+                <p class="text-base leading-8 text-cream/75 md:text-lg">
+                    Soto ini dikenal sebagai sajian yang hangat dan nikmat, menjadi bagian penting dari identitas kuliner masyarakat Kudus.
+                </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-[#080f0c] px-5 py-14 md:px-10 md:py-20">
+        <div class="mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="lg:col-span-2">
+                <a href="index.html" class="inline-flex items-center gap-3">
+                    <span class="font-serif text-2xl tracking-[0.15em] text-gold">
+                        Arunika
+                    </span>
+                </a>
+                <p class="mt-5 max-w-sm text-sm leading-7 text-muted">
+                    Ruang digital untuk mengenal seni, sejarah,
+                    tradisi, dan kekayaan budaya Jawa.
+                </p>
+                <p class="mt-6 text-xs uppercase tracking-widest text-cream/40">
+                    Merawat warisan, meneruskan cerita.
+                </p>
+            </div>
+
+            <div>
+                <h3 class="text-xs font-bold uppercase tracking-[0.25em] text-gold">
+                    Navigasi
+                </h3>
+               <ul class="mt-6 grid w-fit grid-flow-col grid-rows-3 gap-x-4 gap-y-3 text-sm text-muted">
+                    <li><a href="../beranda/index.html" class="transition hover:text-gold">Beranda</a></li>
+                    <li><a href="../galeri-seni/index.html" class="transition hover:text-gold">Galeri Seni</a></li>
+                    <li><a href="../tradisi/index.html" class="transition hover:text-gold">Tradisi</a></li>
+                    <li><a href="index.html" class="transition hover:text-gold">Kuliner</a></li>
+                    <li><a href="../sejarah/index.html" class="transition hover:text-gold">Sejarah</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-xs font-bold uppercase tracking-[0.25em] text-gold">
+                    Tentang Situs
+                </h3>
+                <p class="mt-5 text-sm leading-7 text-muted">
+                    Dibuat sebagai ruang belajar dan eksplorasi
+                    kekayaan seni serta budaya Jawa.
+                </p>
+            </div>
+        </div>
+
+        <div class="mx-auto mt-12 max-w-7xl border-t border-white/10 pt-6">
+            <div class="flex flex-col justify-between gap-3 text-xs text-cream/40 sm:flex-row">
+                <p>© <span id="year"></span> Arunika — Seni & Budaya Jawa.</p>
+                <p>Dibuat dengan rasa cinta terhadap budaya Nusantara.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WIDGET ACCESSIBILITY (DISIMPAN SEPERTI ASLINYA) -->
+<div class="accessibility-widget">
+
+    <div
+        class="accessibility-panel"
+        id="accessibilityPanel"
+        aria-hidden="true"
+    >
+        <div class="accessibility-header">
+            <h2>Aksesibilitas</h2>
+        </div>
+
+        <p class="accessibility-description">
+            Sesuaikan tampilan agar lebih nyaman digunakan.
+        </p>
+
+        <!-- PENGATURAN TAMPILAN -->
+        <div class="accessibility-group">
+            <p class="access-extra-heading">Pengaturan tampilan</p>
+
+            <button type="button" class="accessibility-option"
+                id="toggleGrayscale" aria-pressed="false">
+                <span>
+                    Grayscale
+                    <small>Tampilan hitam putih</small>
+                </span>
+                <span class="accessibility-status">MATI</span>
+            </button>
+
+            <button type="button" class="accessibility-option"
+                id="toggleContrast" aria-pressed="false">
+                <span>
+                    Kontras tinggi
+                    <small>Mempertegas perbedaan warna</small>
+                </span>
+                <span class="accessibility-status">MATI</span>
+            </button>
+
+            <button type="button" class="accessibility-option"
+                id="toggleInvert" aria-pressed="false">
+                <span>
+                    Warna terbalik
+                    <small>Membalik skema warna halaman</small>
+                </span>
+                <span class="accessibility-status">MATI</span>
+            </button>
+
+            <button type="button" class="accessibility-reset"
+                id="accessibilityReset">
+                Reset tampilan
+            </button>
+        </div>
+
+        <!-- PEMBACA TEKS -->
+        <div class="access-extra-section">
+            <p class="access-extra-heading">Pembaca teks</p>
+
+            <p class="access-extra-description">
+                Dengarkan artikel Budaya dan Adat Jawa.
+            </p>
+
+            <div class="access-extra-controls">
+                <button type="button" class="access-extra-button"
+                    id="ttsPlay">
+                    ▶ Putar
+                </button>
+
+                <button type="button" class="access-extra-button"
+                    id="ttsPause">
+                    Ⅱ Jeda
+                </button>
+
+                <button type="button" class="access-extra-button"
+                    id="ttsResume">
+                    ↻ Lanjut
+                </button>
+
+                <button type="button" class="access-extra-button"
+                    id="ttsStop">
+                    ■ Berhenti
+                </button>
+            </div>
+
+            <p id="ttsStatus" class="access-extra-status"
+                role="status" aria-live="polite">
+                Siap membacakan artikel.
+            </p>
+        </div>
+
+        <!-- VISUALISASI RITME -->
+        <div class="access-extra-section">
+            <p class="access-extra-heading">Visualisasi ritme</p>
+
+            <p class="access-extra-description">
+                Lihat pola gerakan visual dengan tempo yang dapat diatur.
+            </p>
+
+            <div
+                id="ritmeVisualizer"
+                class="ritme-visualizer"
+                role="img"
+                aria-label="Visualisasi ritme dalam keadaan berhenti"
+            >
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+                <span class="ritme-bar"></span>
+            </div>
+
+            <label for="ritmeTempo" class="access-extra-label">
+                Tempo visual
+            </label>
+
+            <div class="access-extra-tempo">
+                <input
+                    type="range"
+                    id="ritmeTempo"
+                    min="40"
+                    max="160"
+                    step="5"
+                    value="90"
+                >
+
+                <output id="ritmeTempoValue" for="ritmeTempo">
+                    90 BPM
+                </output>
+            </div>
+
+            <div class="access-extra-controls">
+                <button type="button" class="access-extra-button"
+                    id="ritmePlay">
+                    ▶ Mulai
+                </button>
+
+                <button type="button" class="access-extra-button"
+                    id="ritmeStop">
+                    ■ Berhenti
+                </button>
+            </div>
+
+            <p id="ritmeStatus" class="access-extra-status"
+                role="status" aria-live="polite">
+                Animasi ritme belum dimulai.
+            </p>
+        </div>
+    </div>
+
+    <button
+        type="button"
+        class="accessibility-toggle"
+        id="accessibilityToggle"
+        aria-label="Buka menu aksesibilitas"
+        aria-expanded="false"
+        aria-controls="accessibilityPanel"
+    >
+        <span class="toggle-icon">⚙️</span>
+    </button>
+
+    <script src="../../js/accessibility-extra.js" defer></script>
+    <script src="../../js/accessibility.js" defer></script>
+
+<!-- JAVASCRIPT -->
+<script>
+    // Tahun otomatis di footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Menu mobile
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuButton.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.toggle('hidden');
+        menuButton.setAttribute('aria-expanded', String(!isHidden));
+        menuButton.textContent = isHidden ? '☰' : '✕';
+    });
+
+    // Tutup menu setelah link dipilih
+    document.querySelectorAll('.mobile-link').forEach(link => {
+        link.classList.add(
+            'block',
+            'text-cream/80',
+            'hover:text-gold',
+            'transition-colors'
+        );
+
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            menuButton.setAttribute('aria-expanded', 'false');
+            menuButton.textContent = '☰';
+        });
+    });
+
+    // ==========================================
+    // LOGIKA ANIMASI SCROLL INTERSECTION OBSERVER
+    // ==========================================
+    
+    // Observer options diatur dengan threshold agar animasi 
+    // baru berjalan setelah elemen sedikit terlihat di layar
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.15 
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Hapus opacity-0 agar animasi tailwind yang memiliki forwards opacity:1 bekerja
+                entry.target.classList.remove('opacity-0');
+                
+                // Tambahkan class animasi berdasarkan trigger class yang kita set di HTML
+                if (entry.target.classList.contains('scroll-animate-up')) {
+                    entry.target.classList.add('animate-fade-up');
+                } else if (entry.target.classList.contains('scroll-animate-left')) {
+                    entry.target.classList.add('animate-fade-left');
+                } else if (entry.target.classList.contains('scroll-animate-right')) {
+                    entry.target.classList.add('animate-fade-right');
+                }
+                
+                // Unobserve agar animasi hanya berjalan sekali (tidak berulang saat scroll naik turun)
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Seleksi semua elemen yang memiliki class trigger kita dan mulai diobservasi
+    document.querySelectorAll('.scroll-animate-up, .scroll-animate-left, .scroll-animate-right').forEach(el => {
+        observer.observe(el);
+    });
+</script>
+</body>
+</html>
